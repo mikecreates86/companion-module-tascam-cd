@@ -159,14 +159,14 @@ module.exports = {
 			this.socket.on('error', (err) => {
 				this.log('error', `Network error: ${err.message}`)
 				this.updateStatus(InstanceStatus.ConnectionFailure, err.message)
-				this.recorder.loggedIn = false
+				this.resetState()
 				this.stopKeepAlive()
 				this.stopCmdQueue()
 				this.startTimeOut()
 			})
 			this.socket.on('end', () => {
 				this.log('warn', 'Connection closed by device')
-				this.recorder.loggedIn = false
+				this.resetState()
 				this.cmdQueue = []
 				this.stopKeepAlive()
 				this.stopCmdQueue()

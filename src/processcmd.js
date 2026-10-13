@@ -25,7 +25,7 @@ module.exports = {
 				}
 				return true
 			case resp.loginFail:
-				this.recorder.loggedIn = false
+				this.resetState()
 				this.updateStatus(InstanceStatus.AuthenticationFailure, 'Incorrect Password')
 				this.log('error', 'Incorrect Password')
 				this.stopCmdQueue()
@@ -103,6 +103,8 @@ module.exports = {
 			case resp.mechaStatusReturn:
 				param[0] = reply.substr(3, 2)
 				this.recorder.mechaStatus = param[0]
+				varList['playState'] = this.mechaStatus_feedback.find((c) => c.id === param[0])?.label ?? 'Other'
+				this.setVariableValues(varList)
 				this.checkFeedbacks('mechaStatus')
 				break
 			case resp.specifiedDeviceStatusReturn:
