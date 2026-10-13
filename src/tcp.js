@@ -164,6 +164,14 @@ module.exports = {
 				this.stopCmdQueue()
 				this.startTimeOut()
 			})
+			this.socket.on('end', () => {
+				this.log('warn', 'Connection closed by device')
+				this.recorder.loggedIn = false
+				this.cmdQueue = []
+				this.stopKeepAlive()
+				this.stopCmdQueue()
+				this.startTimeOut()
+			})
 			this.socket.on('connect', () => {
 				this.log('info', `Connected to ${this.config.host}:${this.config.port}`)
 				this.updateStatus(InstanceStatus.Connecting, `Logging in`)
