@@ -150,6 +150,7 @@ INPUT SELECT sets the input source select of the controlled device.
 ## Variables
 
 - **Track Number**
+- **Play State** (Stop, Play, Record, etc.)
 - **Track Time**
 - **Error Status**
 - **Caution Status**
@@ -170,6 +171,19 @@ INPUT SELECT sets the input source select of the controlled device.
 - **Resume Play**
 
 ## Version History
+
+### Version 2.1.9
+
+- Add Play State variable
+- Variables and feedbacks reset to unknown when the connection is lost
+
+### Version 2.1.8
+
+- Fix End of Media feedback error
+- Track Time now zero-padded (0:05:03)
+- Track change refreshes time using the selected time mode
+- Clean recovery when the unit closes the connection
+- Direct Track Search only accepts digits
 
 ### Version 2.1.6
 
